@@ -38,12 +38,15 @@ This guide provides a **structured problem-solving framework** to tackle ML syst
 ## **3️⃣ Model Selection & Training Strategy**  
 ✅ **Model choices:**  
    - Will we use **supervised, unsupervised, or reinforcement learning**?  
-   - What baseline models can we start with? (Logistic Regression, Random Forest, Transformer-based models)  
-   - Will we use **pre-trained models** or train from scratch?  
+   - What `baseline models` can we start with? (Logistic Regression, Random Forest, Transformer-based models)  
+   - Will we use **pre-trained models** or train from scratch? 
+   - Possibility of continual learning ?
 
 ✅ **Training considerations:**  
-   - How do we handle **data imbalance** and prevent overfitting?  
+   - How do we handle **data imbalance** and prevent overfitting? 
+   - Sampling strategies
    - What loss functions and evaluation metrics are appropriate?  
+   - Training from scratch vs. fine-tuning
    - Should we use **distributed training (e.g., PyTorch DDP, TensorFlow Mirrored Strategy)**?  
 
 ✅ **Hyperparameter tuning:**  
