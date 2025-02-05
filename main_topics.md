@@ -67,7 +67,8 @@ This guide provides a **structured problem-solving framework** to tackle ML syst
 
 ✅ **Scaling considerations:**  
    - How will we handle **traffic spikes and load balancing**?  
-   - Do we need **multi-model A/B testing or canary deployments**?  
+   - Do we need **multi-model A/B testing or canary deployments**? 
+   - Model compression
 
 ---
 

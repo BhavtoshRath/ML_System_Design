@@ -110,3 +110,39 @@ Choosing between **training from scratch** and **fine-tuning** depends on factor
 | **Swish**                | (-∞, ∞)                | - Suitable for deep networks, can outperform ReLU in some tasks              | - May not always outperform ReLU for all problems                   |
 | **GELU**                 | (-∞, ∞)                | - Deep networks, NLP (e.g., Transformer-based architectures like GPT, BERT)  | - Computationally more expensive than ReLU                         |
 | **Hard Sigmoid / Hard Swish** | (0, 1) or (-1, 1)  | - Approximation of Sigmoid or Swish for computational efficiency              | - Limited flexibility, not suitable for complex tasks              |
+
+
+---
+## What evaluation metric (offline) should we choose?
+
+| **Task**                | **Evaluation Metric**       | **When to Use**                                                       |
+|-------------------------|-----------------------------|----------------------------------------------------------------------|
+| **Binary Classification**| **Accuracy**                | - When classes are balanced.                                         |
+|                         | **Precision**                | - When false positives are costly or need to be minimized (e.g., spam detection). |
+|                         | **Recall (Sensitivity)**    | - When false negatives are costly or need to be minimized (e.g., medical diagnosis). |
+|                         | **F1 Score**                | - When there is a need to balance Precision and Recall (especially with imbalanced data). |
+|                         | **AUC-ROC Curve**           | - For evaluating the tradeoff between True Positive Rate (Recall) and False Positive Rate (1-Specificity). |
+|                         | **Log Loss**                | - For probabilistic models, measures the accuracy of the predicted probabilities. |
+| **Multi-Class Classification** | **Accuracy**         | - When classes are balanced.                                         |
+|                         | **Precision (Macro/Micro)** | - When each class is equally important, or when focusing on precision across all classes. |
+|                         | **Recall (Macro/Micro)**    | - When focusing on recall for each class or minimizing false negatives across all classes. |
+|                         | **F1 Score (Macro/Micro)**  | - For balancing Precision and Recall across multiple classes, especially for imbalanced datasets. |
+|                         | **Confusion Matrix**        | - To understand the classification performance, especially in imbalanced classes. |
+| **Regression**           | **Mean Absolute Error (MAE)** | - When you care equally about all errors, or when outliers should be less important. |
+|                         | **Mean Squared Error (MSE)** | - When penalizing large errors more than smaller ones is important. |
+|                         | **Root Mean Squared Error (RMSE)** | - When you want to interpret the error in the same units as the output. |
+|                         | **R-squared (R²)**          | - When you want to understand how well the model explains the variance in the data. |
+|                         | **Adjusted R-squared**     | - For comparing models with different numbers of predictors, penalizing unnecessary predictors. |
+|                         | **Explained Variance Score** | - When you want to understand the proportion of the variance explained by the model. |
+| **Ranking / Recommendation Systems** | **Mean Reciprocal Rank (MRR)** | - When evaluating ranked lists and you care about the position of the first relevant item. |
+|                         | **Normalized Discounted Cumulative Gain (NDCG)** | - For evaluating ranked relevance (higher ranks matter more). |
+|                         | **Precision at K**          | - To measure how many relevant items appear in the top `K` recommendations. |
+| **Anomaly Detection**   | **Precision**                | - When you want to measure the proportion of correctly identified anomalies (positive predictive value). |
+|                         | **Recall**                   | - When you want to measure the proportion of all anomalies correctly identified (true positive rate). |
+|                         | **F1 Score**                 | - When you want to balance precision and recall, especially in imbalanced anomaly detection tasks. |
+| **Clustering**          | **Silhouette Score**         | - To measure the quality of clusters; a higher score indicates well-separated and well-defined clusters. |
+|                         | **Davies-Bouldin Index**     | - To measure the average similarity ratio of each cluster with its most similar cluster (lower is better). |
+|                         | **Adjusted Rand Index (ARI)** | - For comparing clustering results with ground truth, especially with different cluster sizes. |
+| **Time Series Forecasting** | **Mean Absolute Percentage Error (MAPE)** | - When you need to measure prediction accuracy in percentage terms, especially when scale independence is important. |
+|                         | **Mean Absolute Scaled Error (MASE)** | - When comparing forecasts to a naive baseline, especially when the data has different scales. |
+|                         | **Root Mean Squared Logarithmic Error (RMSLE)** | - When the data has a skewed distribution and you want to reduce the influence of large values. |
