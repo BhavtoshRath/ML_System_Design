@@ -46,7 +46,7 @@ Choosing between **training from scratch** and **fine-tuning** depends on factor
 | **Problem Type** | **Common Use Cases** | **Recommended Loss Function** | **Why?** |
 |-----------------|----------------------|------------------------------|----------|
 | **Regression**  | Predicting house prices, temperature forecasting, stock prices | **Mean Squared Error (MSE)** | Penalizes large errors more, useful when extreme deviations matter. |
-| **Regression**  | Robust regression, reducing outlier impact | **Mean Absolute Error (MAE)** | Treats all errors equally, less sensitive to outliers than MSE. |
+| **Regression**  | Robust regression, `reducing outlier impact` | **Mean Absolute Error (MAE)** | Treats all errors equally, less sensitive to outliers than MSE. |
 | **Regression**  | Predicting financial risk, optimizing human perception-based metrics | **Huber Loss** | Combines MSE and MAE, robust to outliers. |
 | **Regression**  | Predicting time-to-failure, event durations | **Log-Cosh Loss** | Similar to Huber but differentiable everywhere, making optimization easier. |
 | **Binary Classification** | Spam detection, sentiment analysis (Yes/No) | **Binary Cross-Entropy (Log Loss)** | Measures how well predictions match probabilities, widely used in logistic regression. |
@@ -60,10 +60,53 @@ Choosing between **training from scratch** and **fine-tuning** depends on factor
 | **Generative Models (GANs)** | Image synthesis, deepfake generation | **Adversarial Loss (Binary Cross-Entropy for GANs)** | Trains the generator to produce realistic samples against the discriminator. |
 | **Contrastive Learning** | Face recognition, Siamese networks | **Contrastive Loss / Triplet Loss** | Maximizes similarity between similar samples while pushing apart dissimilar samples. |
 
----
 
-## **💡 Tips for Choosing the Right Loss Function**
+### **💡 Tips for Choosing the Right Loss Function**
 - **For regression:** MSE is standard, but use MAE or Huber Loss for robustness.  
 - **For classification:** Use cross-entropy for most cases, but focal loss for imbalanced datasets.  
 - **For structured prediction (e.g., ranking, NLP):** Consider task-specific losses like ordinal cross-entropy or seq2seq loss.  
 - **For generative models & reinforcement learning:** Use adversarial loss or policy gradient-based losses.  
+
+---
+## What regularization should we choose?
+
+### Choosing the Right Regularization Technique
+
+| **Scenario** | **Recommended Regularization** | **Why?** |
+|-------------|--------------------------------|----------|
+| **Linear Regression** (High-dimensional features) | **L1 Regularization (Lasso)** | Shrinks some weights to zero, performing feature selection. |
+| **Linear Regression** (Multicollinearity present) | **L2 Regularization (Ridge)** | Reduces overfitting by penalizing large coefficients, keeping all features. |
+| **Linear Regression** (Feature selection + Stability) | **Elastic Net (L1 + L2)** | Combines Lasso (L1) for feature selection and Ridge (L2) for stability. |
+| **Neural Networks (Deep Learning)** | **Dropout** | Randomly drops neurons during training to reduce co-adaptation and overfitting. |
+| **Neural Networks (Weight Constraints)** | **L2 Regularization (Weight Decay)** | Penalizes large weights to improve generalization, commonly used in deep learning. |
+| **Tree-Based Models (Decision Trees, Random Forests)** | **Pruning** | Reduces overfitting by removing nodes that do not contribute significantly to predictions. |
+| **Tree-Based Models (Gradient Boosting, XGBoost, LightGBM)** | **Early Stopping** | Stops training when validation loss stops improving, preventing overfitting. |
+| **Imbalanced Classification** | **Class Weighting** | Adjusts loss function weights to give higher importance to minority classes. |
+| **Sparse Data (NLP, Text Classification)** | **L1 Regularization** | Helps eliminate irrelevant features (words) by setting some weights to zero. |
+| **Highly Correlated Features** | **L2 Regularization (Ridge)** | Helps reduce variance and stabilize coefficients. |
+| **Generative Models (GANs, VAEs)** | **Spectral Normalization / Batch Normalization** | Stabilizes training and prevents mode collapse. |
+| **Batch Learning with Noisy Data** | **Batch Normalization** | Reduces internal covariate shift and stabilizes learning. |
+| **Sequential Learning (Time-Series, RNNs, LSTMs)** | **Gradient Clipping** | Prevents exploding gradients by capping updates to reasonable values. |
+
+### **💡 How to Choose the Right Regularization?**
+- Use **L1 (Lasso)** when you need **feature selection**.  
+- Use **L2 (Ridge)** when you need **stability and shrinkage of all weights**.  
+- Use **Elastic Net** when you need **both feature selection and stability**.  
+- Use **Dropout** in deep learning to prevent **overfitting** in neural networks.  
+- Use **Pruning or Early Stopping** for **tree-based models** to limit model complexity.  
+- Use **Batch Normalization or Gradient Clipping** for **stable training in deep networks**.  
+
+---
+## What activation function should we choose?
+
+| **Activation Function** | **Range**              | **Use Case**                                                                 | **When to Avoid**                                                   |
+|-------------------------|------------------------|------------------------------------------------------------------------------|--------------------------------------------------------------------|
+| **Sigmoid**              | (0, 1)                 | - Binary classification (output layer)                                       | - Deep networks (vanishing gradients)                               |
+| **Tanh**                 | (-1, 1)                | - Hidden layers in shallow networks                                           | - Deep networks (vanishing gradients)                               |
+| **ReLU**                 | (0, ∞)                 | - Hidden layers in deep networks                                             | - Dying ReLU problem (neurons output 0)                            |
+| **Leaky ReLU**           | (-∞, ∞) (with small negative slope) | - Hidden layers in deep networks (avoid dying ReLU problem)                | - Generally no major drawbacks, but slightly slower than ReLU       |
+| **ELU**                  | (-∞, ∞)                | - Deep networks, improves convergence                                        | - Computationally more expensive than ReLU                         |
+| **Softmax**              | (0, 1) (sum = 1)       | - Multi-class classification (output layer)                                  | - Not for binary classification or regression tasks                |
+| **Swish**                | (-∞, ∞)                | - Suitable for deep networks, can outperform ReLU in some tasks              | - May not always outperform ReLU for all problems                   |
+| **GELU**                 | (-∞, ∞)                | - Deep networks, NLP (e.g., Transformer-based architectures like GPT, BERT)  | - Computationally more expensive than ReLU                         |
+| **Hard Sigmoid / Hard Swish** | (0, 1) or (-1, 1)  | - Approximation of Sigmoid or Swish for computational efficiency              | - Limited flexibility, not suitable for complex tasks              |
