@@ -22,21 +22,6 @@ Choosing between **training from scratch** and **fine-tuning** depends on factor
 | **Pretrained Models** | Not used | Used |
 | **Best for**       | Unique/new tasks | Similar tasks with less data |
 
----
-
-## Distributed training
-
-### **1️⃣ Key Differences Between Model and Data Parallelism**
-
-| Feature | **Model Parallelism** 🧩 | **Data Parallelism** 📊 |
-|----------|----------------|----------------|
-| **Definition** | Splits the **model** across multiple devices. | Splits the **dataset** across multiple devices. |
-| **When to Use?** | When the model is **too large to fit into a single GPU’s memory**. | When the dataset is **too large** and training needs to be accelerated. |
-| **How It Works?** | Different GPUs handle **different parts of the model** (e.g., layers, submodules). | Each GPU gets a **copy of the entire model** but trains on different **data batches**. |
-| **Communication Overhead** | **High**: GPUs must communicate intermediate activations. | **Moderate**: Synchronization of gradients across GPUs after backpropagation. |
-| **Scalability** | **Limited**: Effective only for very **large models**. | **Highly Scalable**: Works well with many GPUs. |
-| **Example Models** | GPT-4, LLaMA-65B, ViT-Huge (Vision Transformers). | ResNet, BERT, EfficientNet. |
-| **Common Frameworks** | **Megatron-LM, DeepSpeed, TensorFlow Pipeline Strategy**. | **PyTorch DDP, Horovod, TensorFlow MirroredStrategy**. |
 
 ---
 ## What loss function should we choose?
@@ -146,3 +131,20 @@ Choosing between **training from scratch** and **fine-tuning** depends on factor
 | **Time Series Forecasting** | **Mean Absolute Percentage Error (MAPE)** | - When you need to measure prediction accuracy in percentage terms, especially when scale independence is important. |
 |                         | **Mean Absolute Scaled Error (MASE)** | - When comparing forecasts to a naive baseline, especially when the data has different scales. |
 |                         | **Root Mean Squared Logarithmic Error (RMSLE)** | - When the data has a skewed distribution and you want to reduce the influence of large values. |
+
+
+---
+
+## Distributed training
+
+### **1️⃣ Key Differences Between Model and Data Parallelism**
+
+| Feature | **Model Parallelism** 🧩 | **Data Parallelism** 📊 |
+|----------|----------------|----------------|
+| **Definition** | Splits the **model** across multiple devices. | Splits the **dataset** across multiple devices. |
+| **When to Use?** | When the model is **too large to fit into a single GPU’s memory**. | When the dataset is **too large** and training needs to be accelerated. |
+| **How It Works?** | Different GPUs handle **different parts of the model** (e.g., layers, submodules). | Each GPU gets a **copy of the entire model** but trains on different **data batches**. |
+| **Communication Overhead** | **High**: GPUs must communicate intermediate activations. | **Moderate**: Synchronization of gradients across GPUs after backpropagation. |
+| **Scalability** | **Limited**: Effective only for very **large models**. | **Highly Scalable**: Works well with many GPUs. |
+| **Example Models** | GPT-4, LLaMA-65B, ViT-Huge (Vision Transformers). | ResNet, BERT, EfficientNet. |
+| **Common Frameworks** | **Megatron-LM, DeepSpeed, TensorFlow Pipeline Strategy**. | **PyTorch DDP, Horovod, TensorFlow MirroredStrategy**. |
