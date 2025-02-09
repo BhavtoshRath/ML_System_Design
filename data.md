@@ -12,6 +12,8 @@
 | **Use Cases**    | - When features have different scales.  <br> - When using distance-based algorithms (e.g., KNN, Neural Networks). <br> - When data needs to be in a fixed range (e.g., image processing). | - When data follows (or approximately follows) a normal distribution. <br> - When using algorithms assuming normally distributed inputs (e.g., Linear Regression, PCA). <br> - When feature importance interpretation is required. | - When data is highly skewed. <br> - When feature values vary over multiple orders of magnitude. <br> - Used in financial, scientific, and biological data (e.g., income, population sizes, gene expression). |
 | **Example**      | Converting ages (e.g., 18-65) into a 0-1 range for neural networks. | Standardizing test scores (e.g., SAT scores) for better comparability. | Converting income data (e.g., from $1K to $1M) to reduce skewness. |
 
+---
+
 ### When to Use Which?
 - **Use Normalization** when the dataset has varying scales and when algorithms like neural networks, KNN, or distance-based methods require values within a specific range.
 - **Use Standardization** when data follows a normal distribution or when using algorithms that assume normally distributed inputs, such as linear regression and PCA.

@@ -1,6 +1,5 @@
 ### Popular Machine Learning Algorithms and When to Use Them
 
-
 | **Algorithm**         | **Type**         | **When to Use** |
 |----------------------|----------------|----------------|
 | **Linear Regression** | Supervised (Regression) | - When the relationship between input and output is linear. <br> - When interpretability is important. <br> - For predicting continuous values (e.g., house prices, sales forecasting). |
