@@ -21,9 +21,8 @@ Matrix Factorization is a powerful technique in recommender systems that helps p
 a big user-item ratings matrix into smaller user features matrix (U) and item features matrix (V). By multiplying U and V^T, 
 we approximate missing values in R, allowing us to predict user preferences for unrated items.
 
-U and V have random values initially. It keeps adjusting them by minimizing the error between actual user-item matrix and 
-predicted ratings (R). It then uses optimization techniques like Gradient Descent or Alternating Least Squares (ALS).
-
 ```math
 R \approx U \times V^T
 ```
+U and V have random values initially. It keeps adjusting them by minimizing the error between actual user-item matrix and 
+predicted ratings (R). It then uses optimization techniques like Gradient Descent or Alternating Least Squares (ALS).
