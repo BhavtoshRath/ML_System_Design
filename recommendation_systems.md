@@ -27,3 +27,39 @@ R \approx U \times V^T
 
 U and V have random values initially. It keeps adjusting them by minimizing the error between actual user-item matrix and 
 predicted ratings (R). It then uses optimization techniques like Gradient Descent or Alternating Least Squares (ALS).
+
+**pros**: Very fast, thus scalable
+**cons**: Cold start problem
+
+
+---
+
+### Two-Tower Neural Network
+
+#### **Two Separate Towers**  
+- One tower processes **user features** (e.g., age, location, interactions).  
+- The other tower processes **item features** (e.g., genre, metadata).  
+
+#### **Feature Encoding**  
+- Each tower converts inputs into **low-dimensional embeddings** that capture latent factors.  
+
+#### **Similarity Calculation**  
+- The **user and item embeddings** are combined using a similarity function (e.g., **dot product, cosine similarity**).  
+- The final score represents the **relevance of the item to the user**.  
+
+---
+
+### Matrix Factorization vs. Two-Tower Neural Network  
+
+
+| **Aspect**              | **Matrix Factorization** | **Two-Tower Neural Network** |
+|------------------------|------------------------|------------------------------|
+| **Approach**          | Factorizes the user-item interaction matrix into two lower-dimensional matrices. | Uses two separate neural networks to learn embeddings for users and items independently. |
+| **Input Data**        | Requires an interaction matrix (explicit ratings, clicks, etc.). | Can use structured and unstructured data (e.g., metadata, images, text). |
+| **Feature Learning**  | Learns latent factors through decomposition. | Learns user-item embeddings via deep learning. |
+| **Cold Start Handling** | Struggles with new users/items due to lack of prior interactions. | Handles new users/items better by leveraging metadata and features. |
+| **Scalability**       | Computationally efficient but limited in capturing complex relationships. | More flexible but computationally expensive, requiring GPU acceleration. |
+| **Similarity Calculation** | Uses dot product between latent factors of users and items. | Uses a similarity function (e.g., dot product, cosine similarity) on embeddings. |
+| **Flexibility**       | Limited to structured user-item interaction data. | Supports diverse data sources (text, images, metadata, etc.). |
+| **Accuracy in Complex Cases** | Works well for linear relationships but struggles with non-linear patterns. | Captures complex, non-linear relationships using deep networks. |
+| **Use Cases**        | Collaborative filtering in movie, music, and e-commerce recommendations. | Search ranking, ad personalization, product recommendations, and large-scale matching tasks. |
