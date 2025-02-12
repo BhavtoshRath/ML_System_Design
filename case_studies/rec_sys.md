@@ -1,8 +1,9 @@
-# 📌 Netflix Recommender System - Case Study
+# 📌 Recommender System - Case Study
 
-## **1️⃣ Problem Statement/ define 'business objective'** 🎯  
-- Increase user engagement, revenue, or any other KPI.
-- Rec type: Personalized, general or context-aware (ex: google maps)
+## **1️⃣ Problem Statement** 🎯  
+-  'business objective': Increase user engagement, revenue, or any other KPI
+- Inputs and outputs to the system
+- Rec type: personalized, general or context-aware (ex: google maps)
 - Data type: Implicit (clicks, views, other guest behaviour) or explicit (ratings, reviews, likes/dislikes)
 - Rec sys challenges: Cold start, Scalability, Real-time capability
 
