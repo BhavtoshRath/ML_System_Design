@@ -10,7 +10,8 @@ This guide provides a **structured problem-solving framework** to tackle ML syst
 ✅ **Clarify the problem statement:**  
    - What is the **goal** of the ML system? (e.g., recommendation, classification, forecasting)  
    - Who are the **end users**, and how will they interact with the system?  
-   - What are the key **business objectives** and success metrics?  
+   - What are the key **business objectives** and success metrics? 
+   - Any constraints?
 
 ✅ **Ask clarifying questions:**  
    - What are the **input/output formats**?  
