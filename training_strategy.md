@@ -2,7 +2,8 @@
 
 Modifying the loss function is a common technique to mitigate this issue by adjusting how errors are penalized for different classes. 
 Two commonly used loss functions: class-imbalanced loss and focal loss.
-
+- Class-imbalanced loss: Assigns higher weights to focus on minority classes so that their errors contribute more to the total loss.
+- Focal loss: Adjusts sample weights to focus on hard-to-classify examples.  (e.g., rare object detection, medical rare disease classification).
 ---
 
 Choosing between **training from scratch** and **fine-tuning** depends on factors like data availability, computational resources, and task similarity. This guide outlines when to use each approach.  
