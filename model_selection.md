@@ -18,3 +18,25 @@ Model compression techniques are methods used to reduce the size of a machine le
 | **Compact Network Architectures**  | Using efficient network architectures designed for smaller, faster models (e.g., MobileNets, EfficientNet).   | Architectures are designed for efficiency without compromising much on accuracy.                                      | Provides a balance of performance and efficiency, ideal for resource-constrained devices.                    |
 | **Sparse Representations**         | Encouraging sparsity in the model, where most parameters are zero.                                           | Techniques like L1 regularization or sparse coding reduce the number of non-zero weights in the model.                | Reduces model size and computation by eliminating zero-weight operations.                                    |
 | **Network Quantization + Pruning** | Combining pruning and quantization to reduce both model size and precision.                                  | First, prune unnecessary weights, then quantize the remaining weights to lower precision.                             | Provides additional model size reduction while preserving performance.                                      |
+
+
+Here's a concise table comparing **Bagging** and **Boosting**:
+
+| **Aspect**               | **Bagging**                               | **Boosting**                              |
+|--------------------------|-------------------------------------------|-------------------------------------------|
+| **Learning Type**         | Parallel (models are trained independently) | Sequential (models are trained in sequence) |
+| **Model Type**            | Reduces variance                         | Reduces bias                              |
+| **Base Model**            | Typically the same (e.g., decision trees) | Typically weak learners (e.g., shallow trees) |
+| **Overfitting**           | Less prone to overfitting                | More prone to overfitting (requires careful tuning) |
+| **Computation**           | More scalable (parallelizable)           | Computationally more expensive (sequential) |
+| **Performance**           | Performs well with high-variance models  | Often performs better on complex tasks by improving weak learners |
+| **Handling Imbalanced Data** | May struggle with imbalance unless adjusted | Better at handling imbalanced data, as it focuses on difficult examples |
+| **Model Interpretability**| Easier to interpret (if using decision trees) | Less interpretable, especially for more complex boosting algorithms |
+| **Common Algorithms**     | Random Forest, Bagging Classifier        | AdaBoost, Gradient Boosting, XGBoost, LightGBM |
+| **Training Process**      | Models are trained independently on different subsets (via bootstrapping) | Models are trained sequentially, with each new model correcting previous errors |
+| **Data Subsampling**      | Bootstrapped samples of data used        | Weights misclassified examples more heavily |
+| **Result Aggregation**    | Majority voting (classification) or averaging (regression) | Weighted combination of models (e.g., via model performance) |
+| **Sensitivity to Noise**  | Less sensitive to noisy data             | More sensitive to noisy data, may overfit if not tuned |
+| **Use Case**              | Best for reducing variance (e.g., in unstable models like decision trees) | Best for improving accuracy, particularly when base models are weak (e.g., shallow trees) |
+| **Example Use**           | Random Forest for classification or regression | XGBoost, LightGBM for competitive ML tasks |
+

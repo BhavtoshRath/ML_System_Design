@@ -24,11 +24,11 @@
 
 # Feature Selection
 
-| **Method** | **Description** | **Pros** | **Cons** | **Scenario**                           |
-|------------|---------------|----------|----------|----------------------------------------|
-| **Filter Methods** | Selects features using statistical tests (e.g., correlation, Chi-Square, ANOVA). | Fast, scalable. | Ignores feature interactions. | High-dimensional data (1000+ features) |
+| **Method** | **Description**                                                                            | **Pros** | **Cons** | **Scenario**                           |
+|------------|--------------------------------------------------------------------------------------------|----------|----------|----------------------------------------|
+| **Filter Methods** | Selects features using statistical tests (e.g., correlation, Chi-Square, ANOVA).           | Fast, scalable. | Ignores feature interactions. | High-dimensional data (1000+ features) |
 | **Wrapper Methods** | Iteratively selects feature subsets using a model (e.g., RFE, Forward/Backward Selection). | Considers feature interactions. | Computationally expensive. | Small dataset, complex interactions    |
-| **Embedded Methods** | Selects features during model training (e.g., Lasso, Decision Trees). | Efficient, model-driven. | Can be biased toward the model used. | For regression & tree based models     |
-| **Dimensionality Reduction** | Reduces feature count while preserving variance (e.g., PCA). | Keeps key patterns. | Features become less interpretable. | Feature engineering for visualization |
+| **Embedded Methods** | Selects features during model training (e.g., Lasso, Decision Trees).                      | Efficient, model-driven. | Can be biased toward the model used. | For regression & tree based models     |
+| **Dimensionality Reduction** | Reduces feature count while preserving variance (e.g., PCA), t-SNE, UMAP                              | Keeps key patterns. | Features become less interpretable. | Feature engineering for visualization |
 
 ---
