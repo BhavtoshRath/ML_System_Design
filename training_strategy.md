@@ -98,6 +98,18 @@ Choosing between **training from scratch** and **fine-tuning** depends on factor
 | **Hard Sigmoid / Hard Swish** | (0, 1) or (-1, 1)  | - Approximation of Sigmoid or Swish for computational efficiency              | - Limited flexibility, not suitable for complex tasks              |
 
 
+
+---
+
+## **Xavier/HE Initialization to avoid Vanishing/Exploding Gradients and improve convergence**
+| Feature        | Xavier Initialization | He Initialization |
+|---------------|----------------------|------------------|
+| **Best For** | Sigmoid, Tanh | ReLU, LeakyReLU |
+| **Formula** (Variance) | \( \frac{1}{n_{in} + n_{out}} \) | \( \frac{2}{n_{in}} \) |
+| **Exploding/Vanishing Gradient Handling** | Moderate | Better for deeper networks |
+| **Works Well With** | Shallow networks, balanced activations | Deep networks with ReLU |
+
+
 ---
 ## What evaluation metric (offline) should we choose?
 

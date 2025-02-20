@@ -63,3 +63,12 @@ predicted ratings (R). It then uses optimization techniques like Gradient Descen
 | **Flexibility**       | Limited to structured user-item interaction data.                             | Supports diverse data sources (text, images, metadata, etc.). |
 | **Accuracy in Complex Cases** | Works well for linear relationships but struggles with non-linear patterns.   | Captures complex, non-linear relationships using deep networks. |
 | **Use Cases**        | Collaborative filtering in movie, music, and e-commerce recommendations.      | Search ranking, ad personalization, product recommendations, and large-scale matching tasks. |
+
+---
+
+#### **Comparison of Popular Ranking Metrics**
+| Metric      | What it Measures | Position Sensitive? | Works with Multiple Relevant Items? |
+|------------|-----------------|-------------------|------------------------------|
+| **MRR** | Rank of first relevant result | ✅ Yes | ❌ No |
+| **Precision@K** | Fraction of relevant results in top K | ❌ No | ✅ Yes |
+| **NDCG** | Ranking quality with graded relevance | ✅ Yes | ✅ Yes |
