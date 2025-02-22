@@ -92,5 +92,21 @@ The steps would look like this:
 - **Advantages**: Increases accuracy, combines different model strengths.
 - **Disadvantages**: Computationally intensive, risk of overfitting without proper validation.
 
+---
 
+### **Comparison of Zero-Shot, Few-Shot, and Transfer Learning**  
+
+| **Aspect**         | **Zero-Shot Learning** | **Few-Shot Learning** | **Transfer Learning** |
+|-------------------|---------------------|---------------------|---------------------|
+| **Definition**    | Model makes predictions for tasks it has never seen before without any training examples. | Model learns a new task with only a few labeled examples. | Model leverages pre-trained knowledge from a related task and fine-tunes on a new dataset. |
+| **Training Data** | No task-specific training data is provided. | A very small number of labeled examples per class are available. | A large dataset is used for pre-training; smaller task-specific data is used for fine-tuning. |
+| **Dependency on Pre-trained Models** | Strong reliance on pre-trained models and embeddings (e.g., GPT, CLIP). | Uses `meta-learning` or fine-tuning on a small dataset. | Uses a model trained on a related task and fine-tunes on new data. |
+| **Generalization Ability** | High, as it predicts entirely unseen categories or tasks. | Moderate, as it requires a few examples but still generalizes well. | Strong within related tasks but weak on completely unrelated tasks. |
+| **Common Approaches** | Uses pre-trained embeddings, prompt engineering, or contrastive learning (e.g., CLIP, GPT). | Meta-learning (e.g., MAML, Prototypical Networks) or fine-tuning on few samples. | Fine-tuning with techniques like freezing layers or re-training last layers. |
+| **Use Cases** | Open-domain QA, zero-shot classification (e.g., recognizing unseen categories), AI assistants. | Few-shot classification, one-shot learning (e.g., facial recognition, fraud detection). | Image classification, NLP tasks (e.g., BERT fine-tuning for sentiment analysis). |
+| **Example in NLP** | GPT-3 answering questions without task-specific training. | GPT-3 performing a task after seeing a few examples in context. | Fine-tuning BERT on a small dataset for sentiment classification. |
+| **Example in Vision** | CLIP recognizing an unseen image category based on text descriptions. | A model identifying a new object after seeing 5 labeled examples. | Using a pre-trained ResNet model for a medical imaging classification task. |
+| **Challenges** | May struggle with domain-specific knowledge and complex reasoning. | Risk of overfitting due to limited examples. | Requires a sufficiently related pre-trained model for effective transfer. |
+
+---
 

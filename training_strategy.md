@@ -148,6 +148,21 @@ Choosing between **training from scratch** and **fine-tuning** depends on factor
 
 ---
 
+### **When to Use ROC-AUC?**  
+
+| **Criterion**                          | **Use ROC-AUC** ✅ | **Avoid ROC-AUC** ❌ |
+|----------------------------------------|------------------|------------------|
+| **Binary Classification** | ✅ Yes | ❌ No (For Multi-Class, use One-vs-Rest ROC-AUC) |
+| **Imbalanced Dataset** | ✅ Works well if moderately imbalanced | ❌ Avoid if extremely imbalanced (Use PR-AUC instead) |
+| **Ranking Model Performance** | ✅ Good for ranking predictions | ❌ Not for threshold-based classification |
+| **Threshold Independence** | ✅ Evaluates across all thresholds | ❌ Avoid if a fixed threshold is required |
+| **Equal Cost of False Positives & Negatives** | ✅ Suitable when FP & FN have similar consequences | ❌ Avoid if FP & FN costs are different |
+| **Comparing Multiple Models** | ✅ Great for model comparison | ❌ Not ideal if you need a single operating point evaluation |
+| **Highly Imbalanced Data (Rare Events)** | ❌ No (PR-AUC is better) | ✅ Use Precision-Recall AUC instead |
+
+---
+
+
 ## Distributed training
 
 ### **1️⃣ Key Differences Between Model and Data Parallelism**
