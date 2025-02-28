@@ -68,10 +68,68 @@ This guide provides a **structured problem-solving framework** to tackle ML syst
 
 ✅ **Scaling considerations:**  
    - How will we handle **traffic spikes and load balancing**?  
-   - Do we need **multi-model A/B testing or canary deployments**? 
+   - Do we need **multi-model A/B testing (check stat-sig) or canary deployments (roll out new model to small subset of users)**? 
    - Model compression
 
+
+**How to measure statistical significance in  A/B Testing?**
+- Using statistical hypothesis tests such as two-sample t-test or chi-squared test.
+- Two-sample test example: Suppose from the test we get the result had model A is better than model B with p-value
+=0.05 (5%), and we define stat-sig as p<=0.05 (meaning, that if we run the test 100 times, 95 time model A outperforms model
+B).
+
 ---
+
+### **Using Bandits for A/B Testing**  
+
+Traditional **A/B testing** splits traffic equally between variants (A and B) and waits for statistical 
+significance. However, this **wastes traffic** on underperforming variants. **Multi-Armed Bandits (MABs)** solve this by dynamically allocating traffic to better-performing options, reducing regret (loss from suboptimal choices).  
+
+### **Key Bandit Algorithms for A/B Testing**  
+
+#### **1. Epsilon-Greedy**  
+- **How it Works:**  
+  - With probability **ε (explore)**, pick a random variant.  
+  - With probability **(1 - ε) (exploit)**, choose the best-performing variant so far.  
+- **Best for:** Simple scenarios, when exploration-exploitation balance is needed.  
+
+#### **2. Upper Confidence Bound (UCB)**  
+- **How it Works:**  
+  - Select the variant with the highest **upper confidence bound** on expected reward.  
+  - More **exploration early**, then prioritizes the best option.  
+- **Best for:** Ensuring minimal regret in high-stakes decisions.  
+
+#### **3. Thompson Sampling (Bayesian Approach)**  
+- **How it Works:**  
+  - Models rewards as **probability distributions** (Beta distribution for Bernoulli rewards).  
+  - Samples from these distributions and selects the variant with the highest sampled value.  
+  - Naturally balances **exploration and exploitation** based on uncertainty.  
+- **Best for:** Adaptive A/B testing with uncertain prior knowledge.  
+
+
+### **Example: Bandit-Based A/B Testing for Ad Ranking**  
+**Scenario:**  
+Etsy wants to test **two ad ranking models**:  
+- **Model A** (current ranking)  
+- **Model B** (new ranking with personalization)  
+
+#### **Traditional A/B Testing Approach:**  
+- Split traffic **50/50** → Lose revenue if B is worse.  
+- Wait weeks for statistical significance.  
+
+#### **Bandit Approach (Thompson Sampling):**  
+- **Phase 1 (Exploration):** Both models get traffic, but allocation adjusts dynamically.  
+- **Phase 2 (Exploitation):** If Model B performs better, it gets **more traffic automatically**.  
+- **Result:** Faster convergence, **less revenue loss**, and improved user experience.  
+
+#### **Advantages of Bandit-Based A/B Testing:**  
+✅ **Reduces regret** – Less time spent on bad variants.  
+✅ **Faster decision-making** – Adapts in real time.  
+✅ **Works well in dynamic environments** – Handles shifting user behavior.  
+
+---
+
+
 
 ## **5️⃣ Monitoring, Feedback Loops & Continuous Improvement**  
 ✅ **Model performance monitoring:**  
